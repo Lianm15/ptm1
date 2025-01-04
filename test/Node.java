@@ -43,9 +43,33 @@ public class Node {
         edges.add(n);
     }
 
-    public boolean hasCycles()
+    private boolean hasCyclesHelper(Node curr, List<Node> visited)
     {
+     if(visited.contains(curr))
+     {
+         return true;
+     }
+
+     visited.add(curr);
+
+     for (Node n : curr.edges) {
+         if (hasCyclesHelper(n, visited)) {
+             return true;
+         }
+
+     }
+
+     return false;
 
     }
+
+    public boolean hasCycles()
+    {
+        ArrayList<Node> visited = new ArrayList<>();
+        return hasCyclesHelper(this, visited);
+
+    }
+
+
 
 }
