@@ -12,6 +12,7 @@ public class Node {
     public Node(String name) {
         this.name = name;
         this.edges = new ArrayList<>();
+        msg = null;
     }
 
     public Message getMsg() {

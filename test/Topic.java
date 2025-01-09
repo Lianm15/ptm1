@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Topic {
+
+
     public final String name;
+
+
+
     private final List<Agent> subs;
+
+
+
     private final List<Agent> pubs;
 
     Topic(String name){
@@ -16,6 +24,17 @@ public class Topic {
         this.subs = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<Agent> getSubs() {
+        return subs;
+    }
+
+    public List<Agent> getPubs() {
+        return pubs;
+    }
 
 
     public void subscribe(test.Agent a){
