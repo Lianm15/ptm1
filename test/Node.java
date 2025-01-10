@@ -46,6 +46,7 @@ public class Node {
 
     private boolean hasCyclesHelper(Node curr, List<Node> visited)
     {
+
      if(visited.contains(curr))
      {
          return true;
@@ -60,6 +61,7 @@ public class Node {
 
      }
 
+     visited.remove(curr);
      return false;
 
     }

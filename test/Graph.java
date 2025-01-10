@@ -26,6 +26,8 @@ public class Graph extends ArrayList<Node>{
     }
     public void createFromTopics(){
 
+        this.clear();
+        nodeMap.clear();
         Collection<Topic> topics = TopicManagerSingleton.get().getTopics();
 
         for (Topic topic : topics) {
@@ -48,14 +50,27 @@ public class Graph extends ArrayList<Node>{
             }
 
             for (Agent publisher : topic.getPubs()) {
-                Node publisherNode = nodeMap.get("A" + publisher.getName());
+                Node publisherNode;
+                if(!nodeMap.containsKey("A" + publisher.getName()))
+                {
+                    publisherNode = new Node("A" + publisher.getName());
+                    this.add(publisherNode);
+                    nodeMap.put("A" + publisher.getName(), publisherNode);
+
+                }
+                else
+                {
+                    publisherNode = nodeMap.get("A" + publisher.getName());
+                }
                 publisherNode.addEdge(topicNode);
+
             }
 
         }
 
 
-    }    
+
+    }
 
     
 }

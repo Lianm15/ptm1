@@ -21,6 +21,7 @@ public BinOpAgent(String agentName,String topic1Name,String topic2Name,String ou
 
     TopicManagerSingleton.get().getTopic(topic1Name).subscribe(this);
     TopicManagerSingleton.get().getTopic(topic2Name).subscribe(this);
+    TopicManagerSingleton.get().getTopic(outputTopicName).addPublisher(this);
 
 
 }
