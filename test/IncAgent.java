@@ -1,10 +1,9 @@
 package test;
 
 import test.TopicManagerSingleton.TopicManager;
+import java.util.function.BinaryOperator;
 
 public class IncAgent implements Agent {
-
-    private Double value = 0.0;
     private String[] subs;
     private String[] pubs;
 
@@ -12,38 +11,27 @@ public class IncAgent implements Agent {
         this.subs = subs;
         this.pubs = pubs;
         TopicManagerSingleton.get().getTopic(subs[0]).subscribe(this);
-
     }
 
     @Override
     public void callback(String topic, Message msg) {
-        if (topic.equals(subs[0])) {
-            if (!Double.isNaN(msg.asDouble)) {
-                value = msg.asDouble;
-            }
+        if (!Double.isNaN(msg.asDouble)) {
+            TopicManagerSingleton.get().getTopic(pubs[0]).publish(new Message(msg.asDouble + 1));
         }
-
-        if (!Double.isNaN(value)) {
-            TopicManagerSingleton.get().getTopic(pubs[0]).publish(new Message(value + 1));
-        }
-
     }
 
     @Override
     public String getName() {
-        return "";
+        return "IncAgent";
     }
 
     @Override
     public void reset() {
-        value = 0.0;
-
+        //nothing to reset
     }
-
 
     @Override
     public void close() {
         TopicManagerSingleton.get().getTopic(subs[0]).unsubscribe(this);
-
     }
 }

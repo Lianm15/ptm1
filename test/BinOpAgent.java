@@ -7,9 +7,9 @@ import test.TopicManagerSingleton.TopicManager;
 public class BinOpAgent implements Agent {
 
    private String agentName;
-    private  String topic1Name, topic2Name,outputTopicName;
+Fן   String topic1Name, topic2Name,outputTopicName;
     private BinaryOperator<Double> operator;
-    private Double input1,input2;
+    Double input1,input2;
 
 public BinOpAgent(String agentName,String topic1Name,String topic2Name,String outputTopicName,BinaryOperator<Double> operator){
     this.agentName = agentName;
